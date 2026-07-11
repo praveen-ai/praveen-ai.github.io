@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Praveen Jakkula — SDET & QA Automation Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#13131f;
+  --bg2:#1a1a2e;
+  --bg3:#1e1e32;
+  --card:#1c1c2e;
+  --text:#ffffff;
+  --text2:#a0a0b8;
+  --text3:#5a5a7a;
+  --purple:#b44fff;
+  --purple2:#9333ea;
+  --purple-btn:#c44dff;
+  --border:rgba(255,255,255,0.07);
+  --border2:rgba(255,255,255,0.12);
+  --green:#22c55e;
+  --green-bg:rgba(34,197,94,0.12);
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:15px;line-height:1.7;min-height:100vh;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1rem 3rem;background:rgba(19,19,31,0.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+.nav-brand{display:flex;align-items:center;gap:12px;}
+.nav-logo{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:#fff;background:linear-gradient(135deg,#b44fff,#7c3aed);width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.nav-name{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;color:#fff;white-space:nowrap;}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{color:var(--text2);text-decoration:none;font-size:13px;font-weight:500;transition:color 0.2s;}
+.nav-links a:hover{color:#fff;}
+.nav-hire{background:var(--purple-btn);color:#fff;padding:8px 20px;border-radius:999px;text-decoration:none;font-size:13px;font-weight:600;transition:opacity 0.2s;}
+.nav-toggle{display:none;background:none;border:none;color:#fff;width:36px;height:36px;align-items:center;justify-content:center;cursor:pointer;padding:0;}
+.nav-mobile-links{display:none;list-style:none;position:absolute;top:100%;left:0;right:0;background:var(--bg2);border-bottom:1px solid var(--border);flex-direction:column;padding:0.5rem 1.25rem;}
+.nav-mobile-links.open{display:flex;}
+.nav-mobile-links li{border-bottom:1px solid var(--border);}
+.nav-mobile-links li:last-child{border-bottom:none;}
+.nav-mobile-links a{display:block;padding:0.9rem 0;color:var(--text2);text-decoration:none;font-size:14px;}
+.nav-hire:hover{opacity:0.85;}
+
+/* HERO SECTION — side by side */
+.hero{min-height:100vh;display:flex;align-items:center;padding:6rem 3rem 3rem;gap:3rem;max-width:1200px;margin:0 auto;}
+.hero-left{flex:1;min-width:0;}
+.hero-right{width:340px;flex-shrink:0;}
+
+/* Open badge */
+.open-badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:500;color:var(--text2);background:rgba(255,255,255,0.06);border:1px solid var(--border2);border-radius:999px;padding:7px 16px;margin-bottom:2rem;letter-spacing:0.04em;text-transform:uppercase;}
+.open-dot{width:8px;height:8px;border-radius:50%;background:var(--green);animation:blink 2s infinite;flex-shrink:0;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+
+/* BIG NAME */
+.hero-name{font-family:'Space Grotesk',sans-serif;font-weight:800;line-height:0.95;letter-spacing:-3px;margin-bottom:1.5rem;}
+.hero-name .first{font-size:clamp(4rem,9vw,7rem);color:#ffffff;display:block;}
+.hero-name .last{font-size:clamp(4rem,9vw,7rem);color:var(--purple);display:block;}
+
+/* Role line */
+.hero-role{display:flex;align-items:center;gap:12px;font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text2);margin-bottom:1.75rem;}
+.hero-role-line{width:32px;height:2px;background:var(--purple);}
+
+/* Quote */
+.hero-quote{font-size:15px;color:var(--text2);line-height:1.85;font-style:italic;border-left:3px solid var(--purple);padding-left:1.25rem;margin-bottom:2.5rem;max-width:520px;}
+
+/* CTA buttons */
+.hero-cta{display:flex;gap:1rem;flex-wrap:wrap;}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 24px;border-radius:10px;font-size:14px;font-weight:600;text-decoration:none;transition:all 0.2s;border:1px solid transparent;cursor:pointer;}
+.btn-purple{background:var(--purple-btn);color:#fff;box-shadow:0 4px 24px rgba(180,79,255,0.25);}
+.btn-purple:hover{opacity:0.9;transform:translateY(-1px);}
+.btn-outline{background:transparent;color:var(--text2);border-color:var(--border2);}
+.btn-outline:hover{border-color:rgba(255,255,255,0.3);color:#fff;}
+.btn svg{width:16px;height:16px;}
+
+/* PROFILE CARD */
+.profile-card{background:var(--card);border:1px solid var(--border2);border-radius:20px;padding:1.5rem;overflow:hidden;}
+.profile-card-top{display:flex;align-items:center;gap:14px;padding-bottom:1.25rem;margin-bottom:1.25rem;border-bottom:1px solid var(--border);}
+.avatar{width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#b44fff,#7c3aed);display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;color:#fff;flex-shrink:0;letter-spacing:-0.5px;}
+.profile-name{font-size:15px;font-weight:700;color:#fff;margin-bottom:2px;}
+.profile-role{font-size:13px;color:var(--purple);font-weight:500;}
+
+/* Profile rows */
+.profile-rows{display:flex;flex-direction:column;gap:0px;}
+.profile-row{display:flex;align-items:center;justify-content:space-between;padding:0.75rem 0;border-bottom:1px solid var(--border);}
+.profile-row:last-of-type{border-bottom:none;}
+.row-left{display:flex;align-items:center;gap:10px;color:var(--text2);font-size:13px;}
+.row-left svg{width:16px;height:16px;flex-shrink:0;opacity:0.6;}
+.row-val{font-size:13px;font-weight:600;color:#fff;}
+
+/* Available row */
+.avail-row{display:flex;align-items:center;justify-content:space-between;padding-top:1rem;margin-top:0.25rem;}
+.avail-left{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--green);}
+.avail-open{border:1.5px solid rgba(255,255,255,0.2);border-radius:999px;padding:4px 14px;font-size:12px;font-weight:600;color:#fff;letter-spacing:0.06em;}
+
+/* CONTENT */
+.content{max-width:1200px;margin:0 auto;padding:0 3rem;}
+section{padding:5rem 0;}
+.section-eyebrow{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);margin-bottom:0.5rem;font-weight:500;}
+h2{font-family:'Space Grotesk',sans-serif;font-size:2.15rem;font-weight:700;letter-spacing:-0.5px;color:#fff;margin-bottom:2rem;}
+.sec-title span{background:linear-gradient(135deg,#b44fff,#ec4899);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.divider{height:1px;background:var(--border);max-width:1200px;margin:0 auto;}
+
+/* ABOUT */
+.about-layout{display:grid;grid-template-columns:1.15fr 0.85fr;gap:3rem;align-items:start;}
+.about-bio{font-size:15px;color:var(--text2);line-height:1.85;margin-bottom:1rem;}
+.about-bio-lead{color:var(--text);}
+.about-grid{display:grid;grid-template-columns:1fr;gap:0.65rem;}
+.about-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:0.85rem 1.1rem;}
+.about-card-label{font-size:10px;text-transform:uppercase;letter-spacing:0.08em;color:var(--text3);margin-bottom:0.3rem;font-weight:500;}
+.about-card-val{font-size:13px;color:#fff;font-weight:600;}
+.about-card-sub{font-size:11px;color:var(--text2);margin-top:2px;}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1rem;}
+.skill-group{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.25rem;}
+.skill-group-title{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#fff;margin-bottom:0.75rem;font-weight:600;}
+.skill-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.tag{font-size:12px;padding:4px 10px;border-radius:6px;border:1px solid rgba(180,79,255,0.2);color:#c084fc;background:rgba(180,79,255,0.08);font-weight:500;}
+
+/* EXPERIENCE */
+.exp-item{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.75rem;margin-bottom:1.25rem;}
+.exp-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.4rem;}
+.exp-company{font-family:'Space Grotesk',sans-serif;font-size:1.05rem;font-weight:700;color:#fff;}
+.exp-meta{font-size:12px;color:var(--text3);}
+.exp-role{font-size:13px;color:var(--purple);font-weight:500;margin-bottom:1rem;}
+.exp-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1.25rem;}
+.exp-tag{font-size:11px;padding:3px 9px;border-radius:5px;background:rgba(180,79,255,0.1);color:#c084fc;border:1px solid rgba(180,79,255,0.2);font-weight:500;}
+.exp-tag-green{background:rgba(34,197,94,0.1);color:#4ade80;border-color:rgba(34,197,94,0.2);}
+.exp-divider{height:1px;background:var(--border);margin-bottom:1.25rem;}
+.exp-bullets{list-style:none;}
+.exp-bullets li{font-size:14px;color:var(--text2);padding:0.35rem 0 0.35rem 1.25rem;position:relative;line-height:1.75;}
+.exp-bullets li::before{content:'▹';position:absolute;left:0;color:var(--purple);font-size:11px;top:0.6rem;}
+
+/* HIGHLIGHTS */
+.highlights-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1rem;}
+.highlight-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.5rem;}
+.highlight-icon{font-size:1.4rem;margin-bottom:0.75rem;}
+.highlight-title{font-size:14px;font-weight:600;color:#fff;margin-bottom:0.4rem;}
+.highlight-desc{font-size:13px;color:var(--text2);line-height:1.7;}
+
+/* CASE STUDIES */
+.case-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:1.25rem;}
+.case-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.75rem;}
+.case-badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;padding:5px 12px;border-radius:6px;margin-bottom:1rem;}
+.case-badge-purple{background:rgba(180,79,255,0.15);color:#c084fc;}
+.case-badge-green{background:rgba(34,197,94,0.15);color:#4ade80;}
+.case-title{font-family:'Space Grotesk',sans-serif;font-size:1.25rem;font-weight:700;color:#fff;margin-bottom:0.35rem;}
+.case-meta{font-size:12px;color:var(--text3);margin-bottom:1rem;}
+.case-desc{font-size:14px;color:var(--text2);line-height:1.75;margin-bottom:1.25rem;}
+.case-stats{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1rem 1.25rem;margin-bottom:1.25rem;}
+.case-stat-row{display:flex;justify-content:space-between;align-items:center;padding:0.5rem 0;font-size:13px;color:var(--text2);}
+.case-stat-row:not(:last-child){border-bottom:1px solid var(--border);}
+.case-stat-val{font-weight:700;}
+.case-stat-purple{color:#c084fc;}
+.case-stat-green{color:#4ade80;}
+.case-tags{display:flex;flex-wrap:wrap;gap:8px;}
+.case-tag{font-size:12px;padding:5px 12px;border-radius:6px;background:var(--bg2);border:1px solid var(--border);color:var(--text2);}
+
+/* CONTACT */
+.contact-box{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:3rem;text-align:center;}
+.contact-box h2{margin-bottom:0.5rem;}
+.contact-box p{font-size:14px;color:var(--text2);margin-bottom:2rem;}
+.contact-links{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;}
+.contact-link{display:flex;align-items:center;gap:8px;padding:11px 20px;border-radius:10px;border:1px solid var(--border2);color:var(--text2);text-decoration:none;font-size:13px;font-weight:500;transition:all 0.2s;}
+.contact-link:hover{border-color:var(--purple);color:#fff;}
+.contact-link svg{width:15px;height:15px;flex-shrink:0;}
+
+footer{text-align:center;padding:2rem;border-top:1px solid var(--border);font-size:12px;color:var(--text3);}
+
+@media(max-width:768px){
+  nav{padding:0.875rem 1.25rem;position:relative;}
+  .nav-links{display:none;}
+  .nav-name{display:none;}
+  .nav-hire{display:none;}
+  .nav-toggle{display:flex;}
+  .hero{flex-direction:column;padding:5.5rem 1.25rem 2.5rem;gap:2rem;}
+  .hero-right{width:100%;}
+  .hero-name .first,.hero-name .last{font-size:clamp(3rem,12vw,4.5rem);}
+  .content{padding:0 1.25rem;}
+  .about-layout{grid-template-columns:1fr;gap:2rem;}
+  .about-grid{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <div class="nav-logo">PJ</div>
+    <span class="nav-name">Praveen Jakkula</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#case-studies">Case studies</a></li>
+    <li><a href="#highlights">Highlights</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-hire">Hire me</a>
+  <button class="nav-toggle" onclick="document.querySelector('.nav-mobile-links').classList.toggle('open')" aria-label="Toggle menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+  <ul class="nav-mobile-links">
+    <li><a href="#about" onclick="document.querySelector('.nav-mobile-links').classList.remove('open')">About</a></li>
+    <li><a href="#experience" onclick="document.querySelector('.nav-mobile-links').classList.remove('open')">Experience</a></li>
+    <li><a href="#skills" onclick="document.querySelector('.nav-mobile-links').classList.remove('open')">Skills</a></li>
+    <li><a href="#case-studies" onclick="document.querySelector('.nav-mobile-links').classList.remove('open')">Case studies</a></li>
+    <li><a href="#highlights" onclick="document.querySelector('.nav-mobile-links').classList.remove('open')">Highlights</a></li>
+    <li><a href="#contact" onclick="document.querySelector('.nav-mobile-links').classList.remove('open')">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO — LEFT + RIGHT -->
+<div class="hero">
+  <!-- LEFT -->
+  <div class="hero-left">
+    <div class="open-badge">
+      <span class="open-dot"></span>
+      Open to work · Available immediately
+    </div>
+    <div class="hero-name">
+      <span class="first">Praveen</span>
+      <span class="last">Jakkula</span>
+    </div>
+    <div class="hero-role">
+      <span class="hero-role-line"></span>
+      Software Engineer III in Test · QA Automation · Performance Testing
+    </div>
+    <p class="hero-quote">"Building enterprise-grade test frameworks from scratch — cutting manual effort, uncovering regressions before production, and delivering release confidence at scale."</p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn btn-purple">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        Contact me
+      </a>
+      <a href="#experience" class="btn btn-outline">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
+        Experience
+      </a>
+      <a href="#skills" class="btn btn-outline">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        Skills
+      </a>
+    </div>
+  </div>
+
+  <!-- RIGHT — Profile Card -->
+  <div class="hero-right">
+    <div class="profile-card">
+      <div class="profile-card-top">
+        <div class="avatar">PJ</div>
+        <div>
+          <div class="profile-name">Praveen Jakkula</div>
+          <div class="profile-role">Software Engineer III in Test</div>
+        </div>
+      </div>
+      <div class="profile-rows">
+        <div class="profile-row">
+          <div class="row-left">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            Experience
+          </div>
+          <span class="row-val">7+ years</span>
+        </div>
+        <div class="profile-row">
+          <div class="row-left">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+            Companies
+          </div>
+          <span class="row-val">3 companies</span>
+        </div>
+        <div class="profile-row">
+          <div class="row-left">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            Effort saved
+          </div>
+          <span class="row-val">60% reduction</span>
+        </div>
+        <div class="profile-row">
+          <div class="row-left">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            Test coverage
+          </div>
+          <span class="row-val">98%</span>
+        </div>
+      </div>
+      <div class="avail-row">
+        <div class="avail-left">
+          <span class="open-dot"></span>
+          Available for opportunities
+        </div>
+        <span class="avail-open">OPEN</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="content">
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="section-eyebrow">01 — About me</p>
+  <h2 class="sec-title">Senior QA engineer with <span>enterprise depth</span></h2>
+  <div class="about-layout">
+    <div class="about-text">
+      <p class="about-bio about-bio-lead">Results-driven SDET with 7+ years in software engineering, specializing in QA Automation, API Testing, and Performance Testing. I currently drive QA automation and release readiness at Mitratech as a Software Engineer III in Test — promoted from SE II in March 2025.</p>
+      <p class="about-bio">My expertise lies in building scalable automation frameworks with Java, Selenium WebDriver, and TestNG from scratch, validating REST APIs with Rest Assured and Postman, and architecting JMeter performance suites that surface critical bottlenecks before they reach production.</p>
+      <p class="about-bio">I bring a strong QA ownership mindset — leading defect triage and lifecycle management across 4 Agile teams, maintaining 400+ test cases in TestRail aligned with sprint cycles, and collaborating closely with development to keep Jenkins CI/CD pipelines stable.</p>
+      <p class="about-bio">Earlier in my career, I designed performance testing strategies across 200+ REST APIs at Configit, and built and validated AI-driven chatbot solutions at Sunera Tech — integrating enterprise platforms like Salesforce, ServiceNow, and Azure.</p>
+    </div>
+    <div class="about-grid">
+      <div class="about-card">
+        <div class="about-card-label">Current role</div>
+        <div class="about-card-val">Software Engineer III, In Test</div>
+        <div class="about-card-sub">Promoted from SE II · Mar 2025</div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-label">Education</div>
+        <div class="about-card-val">B.Tech in CSE · NIT Calicut</div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-label">Location</div>
+        <div class="about-card-val">Hyderabad, India</div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-label">Methodology</div>
+        <div class="about-card-val">Agile (Scrum)</div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-label">Specialization</div>
+        <div class="about-card-val">Automation Testing · API Testing · Performance Testing · Accessibility</div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-label">Award</div>
+        <div class="about-card-val">🏆 Rockstar Award — Outstanding Performance</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <p class="section-eyebrow">02 — Experience</p>
+  <h2 class="sec-title">7+ years <span>across enterprise products</span></h2>
+
+  <div class="exp-item">
+    <div class="exp-top">
+      <div class="exp-company">Mitratech</div>
+      <div class="exp-meta">Jul 2022 – Present · Hyderabad</div>
+    </div>
+    <div class="exp-role">Software Engineer III, In Test · Promoted from SE II (Mar 2025)</div>
+    <div class="exp-tags">
+      <span class="exp-tag exp-tag-green">60% regression effort cut</span>
+      <span class="exp-tag exp-tag-green">98% test coverage</span>
+      <span class="exp-tag">Java · Selenium · TestNG</span>
+      <span class="exp-tag">REST Assured · JMeter</span>
+      <span class="exp-tag">AI-augmented testing</span>
+    </div>
+    <div class="exp-divider"></div>
+    <ul class="exp-bullets">
+      <li>Engineered a scalable automation framework and automated test suite using Java, Selenium WebDriver, and TestNG, reducing manual regression effort by 60%+ and enabling same-day release confidence.</li>
+      <li>Strengthened and stabilized 300+ Web UI test cases across cross-browser environments, reducing test flakiness and cutting execution time by 35% under tight sprint deadlines.</li>
+      <li>Designed and automated 30+ REST API test cases using Java, REST Assured, and Postman, validating authentication, request/response payloads, status codes, business rules, and SQL database records to ensure reliable integrations across 3 major application releases.</li>
+      <li>Architected a JMeter performance suite from scratch covering 50+ critical REST API endpoints, uncovering 12 latency regressions before production.</li>
+      <li>Monitored Jenkins CI/CD pipeline executions, analyzed test failures, and collaborated with development teams to maintain build stability across Agile sprint cycles.</li>
+      <li>Led defect tracking, reporting, and lifecycle management across 4 Agile teams using Jira and Confluence, conducting root cause analysis and severity triage to reduce average bug resolution time by 20%.</li>
+      <li>Authored and managed 400+ test cases in TestRail aligned with Agile user stories, contributing to sprint test planning and maintaining 98% test coverage and release readiness.</li>
+      <li>Leveraged AI-powered tools including Claude AI, Gemini, Devin AI, and GitHub Copilot to accelerate test creation, debug Selenium and REST Assured failures, and support PR reviews and shift-left testing — cutting test development effort by ~30%.</li>
+    </ul>
+  </div>
+
+  <div class="exp-item">
+    <div class="exp-top">
+      <div class="exp-company">Configit</div>
+      <div class="exp-meta">Mar 2021 – Jul 2022 · Chennai</div>
+    </div>
+    <div class="exp-role">Software Test Engineer</div>
+    <div class="exp-tags">
+      <span class="exp-tag">200+ REST APIs</span>
+      <span class="exp-tag">Load · Stress · Soak Testing</span>
+      <span class="exp-tag">Apache JMeter</span>
+    </div>
+    <div class="exp-divider"></div>
+    <ul class="exp-bullets">
+      <li>Designed and executed performance testing strategy using Apache JMeter across 200+ REST APIs, covering load, stress, and soak scenarios, delivering bottleneck analysis that influenced capacity planning for 3 major product releases.</li>
+      <li>Conducted comprehensive soak testing across all application pages over 72-hour windows, detecting 4 critical memory leaks that would have caused production incidents.</li>
+      <li>Produced structured performance test reports per release cycle, enabling the release team to make data-driven go/no-go decisions within 48 hours of test completion.</li>
+    </ul>
+  </div>
+
+  <div class="exp-item">
+    <div class="exp-top">
+      <div class="exp-company">Sunera Tech</div>
+      <div class="exp-meta">Jun 2019 – Mar 2021 · Hyderabad</div>
+    </div>
+    <div class="exp-role">Software Engineer</div>
+    <div class="exp-tags">
+      <span class="exp-tag">Salesforce · Zendesk · ServiceNow</span>
+      <span class="exp-tag">Dialogflow · Azure · Mailgun · Twilio</span>
+      <span class="exp-tag exp-tag-green">Zero critical defects at go-live</span>
+    </div>
+    <div class="exp-divider"></div>
+    <ul class="exp-bullets">
+      <li>Integrated enterprise CRM platforms including Salesforce, Zendesk, Freshservice, ServiceNow, Azure, and OTRS.</li>
+      <li>Delivered intelligent chatbots for Enersys and Skoda across WhatsApp, Web, and Email channels using Dialogflow, Azure, Mailgun, and Twilio — automating 40%+ of tier-1 support queries.</li>
+      <li>Performed end-to-end functional, integration, and regression testing of chatbot solutions, achieving zero critical defects at go-live for 5 consecutive client deployments.</li>
+    </ul>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-eyebrow">03 — Skills &amp; tools</p>
+  <h2 class="sec-title">Full-stack <span>quality engineering</span></h2>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <div class="skill-group-title">Testing types</div>
+      <div class="skill-tags"><span class="tag">Manual</span><span class="tag">Automation</span><span class="tag">Functional</span><span class="tag">Regression</span><span class="tag">Sanity</span><span class="tag">UAT</span><span class="tag">Integration</span><span class="tag">Accessibility</span><span class="tag">Localization</span></div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Languages</div>
+      <div class="skill-tags"><span class="tag">Java (Core)</span><span class="tag">SQL</span></div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Automation tools</div>
+      <div class="skill-tags"><span class="tag">Selenium WebDriver</span><span class="tag">TestNG</span><span class="tag">TestRail</span></div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">API &amp; Performance</div>
+      <div class="skill-tags"><span class="tag">Postman</span><span class="tag">Rest Assured</span><span class="tag">Swagger</span><span class="tag">JMeter</span></div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">CI/CD &amp; Version control</div>
+      <div class="skill-tags"><span class="tag">Jenkins</span><span class="tag">GitHub</span></div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Defect management</div>
+      <div class="skill-tags"><span class="tag">JIRA</span><span class="tag">Confluence</span></div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">IDEs</div>
+      <div class="skill-tags"><span class="tag">Eclipse</span><span class="tag">IntelliJ IDEA</span><span class="tag">VS Code</span></div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">AI &amp; Security</div>
+      <div class="skill-tags"><span class="tag">Claude AI</span><span class="tag">Devin AI</span><span class="tag">GitHub Copilot</span><span class="tag">BrowserStack</span><span class="tag">MCP Tools</span><span class="tag">OWASP ZAP</span></div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Methodology</div>
+      <div class="skill-tags"><span class="tag">Agile</span><span class="tag">Scrum</span><span class="tag">Sprint Planning</span><span class="tag">Backlog Refinement</span><span class="tag">Daily Stand-ups</span><span class="tag">Sprint Reviews</span><span class="tag">Sprint Retrospectives</span><span class="tag">Story Estimation</span><span class="tag">Defect Triage</span><span class="tag">User Story Analysis</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CASE STUDIES -->
+<section id="case-studies">
+  <p class="section-eyebrow">04 — Case studies</p>
+  <h2 class="sec-title">Real-world <span>impact delivered</span></h2>
+  <div class="case-grid">
+    <div class="case-card">
+      <span class="case-badge case-badge-purple">Automation</span>
+      <div class="case-title">Enterprise Test Automation Framework</div>
+      <div class="case-meta">Mitratech · Jul 2022 – Present</div>
+      <p class="case-desc">Engineered a scalable Java-Selenium-TestNG automation framework from scratch — covering 300+ Web UI test cases across cross-browser environments, integrated into a Jenkins CI/CD pipeline for continuous validation.</p>
+      <div class="case-stats">
+        <div class="case-stat-row"><span>Regression effort cut</span><span class="case-stat-val case-stat-green">60%+</span></div>
+        <div class="case-stat-row"><span>Web UI test cases</span><span class="case-stat-val case-stat-purple">300+</span></div>
+        <div class="case-stat-row"><span>Execution time cut</span><span class="case-stat-val case-stat-green">35%</span></div>
+      </div>
+      <div class="case-tags">
+        <span class="case-tag">Java</span>
+        <span class="case-tag">Selenium WebDriver</span>
+        <span class="case-tag">TestNG</span>
+        <span class="case-tag">Jenkins</span>
+      </div>
+    </div>
+    <div class="case-card">
+      <span class="case-badge case-badge-green">AI Testing</span>
+      <div class="case-title">Enterprise Chatbot QA & Integration Testing</div>
+      <div class="case-meta">Sunera Tech · Jun 2019 – Mar 2021</div>
+      <p class="case-desc">Performed end-to-end functional, integration, and regression testing for intelligent chatbots deployed for Enersys and Skoda across WhatsApp, Web, and Email — validating integrations with Dialogflow, Azure, Mailgun, Twilio, and enterprise CRM platforms like Salesforce and ServiceNow.</p>
+      <div class="case-stats">
+        <div class="case-stat-row"><span>Tier-1 queries automated</span><span class="case-stat-val case-stat-green">40%+</span></div>
+        <div class="case-stat-row"><span>Consecutive deployments</span><span class="case-stat-val case-stat-purple">5</span></div>
+        <div class="case-stat-row"><span>Critical defects at go-live</span><span class="case-stat-val case-stat-green">Zero</span></div>
+      </div>
+      <div class="case-tags">
+        <span class="case-tag">Dialogflow</span>
+        <span class="case-tag">Salesforce</span>
+        <span class="case-tag">ServiceNow</span>
+        <span class="case-tag">Twilio</span>
+      </div>
+    </div>
+    <div class="case-card">
+      <span class="case-badge case-badge-purple">AI Testing</span>
+      <div class="case-title">Enterprise AI Chatbot Validation</div>
+      <div class="case-meta">Current role · 2023–Present</div>
+      <p class="case-desc">Led end-to-end QA for an enterprise AI chatbot — designing test strategies covering intent classification, entity extraction, fallback handling, and multi-turn conversational flows.</p>
+      <div class="case-stats">
+        <div class="case-stat-row"><span>Intent accuracy coverage</span><span class="case-stat-val case-stat-green">95%+</span></div>
+        <div class="case-stat-row"><span>Edge case scenarios</span><span class="case-stat-val case-stat-purple">200+</span></div>
+        <div class="case-stat-row"><span>Defect catch rate</span><span class="case-stat-val case-stat-green">Pre-release</span></div>
+      </div>
+      <div class="case-tags">
+        <span class="case-tag">Conversational AI</span>
+        <span class="case-tag">Intent Testing</span>
+        <span class="case-tag">TestRail</span>
+      </div>
+    </div>
+    <div class="case-card">
+      <span class="case-badge case-badge-purple">API Testing</span>
+      <div class="case-title">REST API Test Suite — Enterprise Products</div>
+      <div class="case-meta">Current role · 2022–Present</div>
+      <p class="case-desc">Designed comprehensive REST API test suites covering authentication, CRUD operations, error handling, and response schema validation for mission-critical endpoints.</p>
+      <div class="case-stats">
+        <div class="case-stat-row"><span>API test cases</span><span class="case-stat-val case-stat-purple">30+</span></div>
+        <div class="case-stat-row"><span>Major releases validated</span><span class="case-stat-val case-stat-green">3</span></div>
+        <div class="case-stat-row"><span>Coverage</span><span class="case-stat-val case-stat-green">Auth · CRUD · Schema</span></div>
+      </div>
+      <div class="case-tags">
+        <span class="case-tag">Java</span>
+        <span class="case-tag">REST Assured</span>
+        <span class="case-tag">Postman</span>
+        <span class="case-tag">SQL</span>
+      </div>
+    </div>
+    <div class="case-card">
+      <span class="case-badge case-badge-green">Performance Testing</span>
+      <div class="case-title">Performance Testing Suite</div>
+      <div class="case-meta">Current role · 2022–Present</div>
+      <p class="case-desc">Architected a JMeter performance testing suite from scratch, covering 50+ critical REST API endpoints to uncover latency bottlenecks and regressions before they reached production.</p>
+      <div class="case-stats">
+        <div class="case-stat-row"><span>API endpoints covered</span><span class="case-stat-val case-stat-purple">50+</span></div>
+        <div class="case-stat-row"><span>Latency regressions found</span><span class="case-stat-val case-stat-green">12</span></div>
+        <div class="case-stat-row"><span>Detection stage</span><span class="case-stat-val case-stat-green">Pre-production</span></div>
+      </div>
+      <div class="case-tags">
+        <span class="case-tag">JMeter</span>
+        <span class="case-tag">Java</span>
+        <span class="case-tag">Performance Engineering</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- HIGHLIGHTS -->
+<section id="highlights">
+  <p class="section-eyebrow">05 — Highlights</p>
+  <h2 class="sec-title">Impact-driven <span>contributions</span></h2>
+  <div class="highlights-grid">
+    <div class="highlight-card">
+      <div class="highlight-icon">⚙️</div>
+      <div class="highlight-title">Automation framework architect</div>
+      <div class="highlight-desc">Built a scalable Java-Selenium-TestNG suite from scratch, cutting regression effort 60% and enabling same-day release confidence.</div>
+    </div>
+    <div class="highlight-card">
+      <div class="highlight-icon">🚀</div>
+      <div class="highlight-title">Performance engineering</div>
+      <div class="highlight-desc">Designed a JMeter suite covering 50+ API endpoints, uncovering 12 latency regressions before production at Mitratech.</div>
+    </div>
+    <div class="highlight-card">
+      <div class="highlight-icon">🔗</div>
+      <div class="highlight-title">REST API testing at scale</div>
+      <div class="highlight-desc">Validated 200+ REST APIs at Configit and 30+ at Mitratech, preventing breaking changes across major version upgrades.</div>
+    </div>
+    <div class="highlight-card">
+      <div class="highlight-icon">🤖</div>
+      <div class="highlight-title">AI-augmented QA pioneer</div>
+      <div class="highlight-desc">Uses Claude AI, Devin AI, and GitHub Copilot for test authoring, failure debugging, and shift-left testing strategies.</div>
+    </div>
+    <div class="highlight-card">
+      <div class="highlight-icon">♿</div>
+      <div class="highlight-title">Accessibility champion</div>
+      <div class="highlight-desc">Ensured WCAG 2.1 compliance across enterprise web apps — screen reader, Alt text, and keyboard navigation testing.</div>
+    </div>
+    <div class="highlight-card">
+      <div class="highlight-icon">🏆</div>
+      <div class="highlight-title">Rockstar Award</div>
+      <div class="highlight-desc">Recognized for outstanding performance, proactive ownership, and significant contributions to automation framework enhancements and successful sprint deliveries.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-eyebrow">06 — Contact</p>
+  <div class="contact-box">
+    <h2 class="sec-title">Let's work <span>together</span></h2>
+    <p>Open to SDET, QA Automation, and Performance Engineering roles.<br/>Based in Hyderabad, India — available immediately.</p>
+    <div class="contact-links">
+      <a href="mailto:praveenjakkula97@gmail.com" class="contact-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        praveenjakkula97@gmail.com
+      </a>
+      <a href="https://linkedin.com/in/praveen-jakkula" target="_blank" class="contact-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+      <a href="tel:+919492442217" class="contact-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+        +91 94924 42217
+      </a>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<footer>© 2026 · Praveen Jakkula · Software Engineer III in Test · Hyderabad, IN</footer>
+
+</body>
+</html>
